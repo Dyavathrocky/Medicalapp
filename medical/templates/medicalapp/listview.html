@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>List View</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href='{% static 'style.css' %}'>
+    </head>
+    <body>
+        <h1>List View</h1>
+        {% if list_view %}            
+        <table border=2>
+            <th>ID</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>age</th>
+            <th>Update</th>
+            <th>Delete</th>
+            <th>Add data</th>
+            <th>Analyse</th>
+            {% for patient in list_view %}
+                <tr>
+                    <td>{{ patient.id }}</td>
+                    <td>{{ patient.firstname }}</td>
+                    <td>{{ patient.lastname }}</td>
+                    <td>{{ patient.age }}</td>
+                    <td><a href="/medical/update/{{ patient.id }}">Update</a></td>
+                    <td><a href="/medical/delete/{{ patient.id }}">Delete</a></td>
+                    <td><a href="/medical/adddata/{{ patient.id }}">Add data</a></td>
+                    <td><a href="/medical/analyze/{{ patient.id }}">Analyze data</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <h1>Please create Patient deatils as of now no data in the system</h1>
+        {% endif %}
+            <a href='{% url 'create' %}'>Create New Patient</a>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>
